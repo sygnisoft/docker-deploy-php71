@@ -3,6 +3,7 @@ RUN apt-get update && buildDeps="libpq-dev libzip-dev" && apt-get install -y $bu
 RUN docker-php-ext-install pdo pdo_pgsql pgsql zip bcmath gd calendar gmp
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN npm install -g bower
-
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - & echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && sudo apt-get install yarn
+RUN apt-get install bower
 MAINTAINER Pawel Kolanecki <p.kolanecki@sygnisoft.com>
